@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+if(!globalThis.btoa)globalThis.btoa=s=>Buffer.from(s,'binary').toString('base64');
+if(!globalThis.atob)globalThis.atob=s=>Buffer.from(s,'base64').toString('binary');
+const {encryptAndFragment,reconstructAndDecrypt}=await import('../protocol.mjs');
+const message='Emergency route changed to checkpoint Delta';const phrase='copper river lantern seven maple orbit';
+const bundle=await encryptAndFragment(message,phrase,5);
+assert.equal(bundle.fragments.length,5);assert.equal(await reconstructAndDecrypt(bundle,phrase),message);
+await assert.rejects(()=>reconstructAndDecrypt(bundle,'wrong phrase cannot open this'));
+const tampered=structuredClone(bundle);tampered.fragments[0].data=tampered.fragments[0].data.slice(0,-2)+'AA';
+await assert.rejects(()=>reconstructAndDecrypt(tampered,phrase),/integrity/);
+console.log('RelayMesh protocol tests passed: encryption, reassembly, wrong phrase, tamper rejection.');

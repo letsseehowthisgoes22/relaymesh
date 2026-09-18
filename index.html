@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="RelayMesh moves encrypted message fragments through opt-in devices and rewards useful delivery with RelayCoin."><title>RelayMesh — Messages find a way</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="mesh.css"><script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script></head>
+<body>
+<nav><a class="brand" href="#"><span>◆</span> RelayMesh</a><div class="network"><i></i><span id="network">Local simulation ready</span></div></nav>
+<main>
+  <section class="hero"><div class="kicker">DECENTRALIZED DELAY-TOLERANT MESSAGING</div><h1>Messages find a way.<br><em>Even when networks fail.</em></h1><p>RelayMesh encrypts a message, scatters its fragments through opt-in devices, and pays RelayCoin to the relays that help it reach the right receiver.</p><div class="trust"><span>✓ Phrase is the reconstruction map</span><span>✓ Relays never see plaintext</span><span>✓ Useful delivery earns RLY</span></div></section>
+  <section class="mesh-card">
+    <div class="mesh-copy"><div class="kicker">LIVE PROTOCOL SIMULATION</div><h2>Watch one message take five independent paths.</h2><p>The demo encrypts locally, creates shuffled packets, routes them through simulated nearby devices, reconstructs at the receiver, and settles relay rewards.</p><label class="field-label" for="meshMessage">Secret message</label><textarea id="meshMessage">Emergency supply cache moved to checkpoint Delta at 18:30.</textarea><label class="field-label" for="meshPhrase">Six-word recovery phrase</label><input id="meshPhrase" value="copper river lantern seven maple orbit"><button class="primary" id="runMesh">Run encrypted delivery <b>→</b></button></div>
+    <div class="mesh-stage"><div class="node sender"><b>S</b><span>Sender</span></div><div id="packets"></div><div class="relays"><div class="node"><b>A</b><span>Relay A</span><small>0 RLY</small></div><div class="node"><b>B</b><span>Relay B</span><small>0 RLY</small></div><div class="node"><b>C</b><span>Relay C</span><small>0 RLY</small></div></div><div class="node receiver"><b>R</b><span>Receiver</span></div><div id="meshStatus" class="mesh-status">Ready to fragment</div></div>
+  </section>
+  <section class="app-card">
+    <div class="tabs"><button class="tab active" data-tab="create">Create proof</button><button class="tab" data-tab="verify">Verify record</button></div>
+    <div id="create" class="pane active">
+      <div class="step-head"><span>01</span><div><h2>Add a record</h2><p>Paste text or choose a file. Nothing is uploaded.</p></div></div>
+      <textarea id="createText" placeholder="Paste a contract, certificate, report, agreement, or other record..."></textarea>
+      <div class="file-row"><label for="createFile">Choose file</label><input id="createFile" type="file" hidden><span id="createFileName">or paste text above</span></div>
+      <label class="field-label" for="label">Public label <small>optional, no sensitive information</small></label><input id="label" maxlength="80" placeholder="Example: Vendor agreement — final">
+      <button class="primary" id="generate">Generate private fingerprint <b>→</b></button>
+      <div id="proofResult" class="proof-result hidden"><div class="result-title"><span>02</span><div><h2>Fingerprint ready</h2><p>Only this fingerprint is used on-chain.</p></div></div><code id="fingerprint"></code><div class="button-row"><button class="ghost" id="copyHash">Copy fingerprint</button><button class="primary" id="anchor">Connect wallet & anchor</button></div><p class="micro">Anchoring requires a deployed ProofRegistry contract and a testnet wallet.</p></div>
+    </div>
+    <div id="verify" class="pane">
+      <div class="step-head"><span>01</span><div><h2>Verify a record</h2><p>Recalculate its fingerprint and check the public registry.</p></div></div>
+      <textarea id="verifyText" placeholder="Paste the record you want to verify..."></textarea>
+      <div class="file-row"><label for="verifyFile">Choose file</label><input id="verifyFile" type="file" hidden><span id="verifyFileName">or paste text above</span></div>
+      <button class="primary" id="verifyBtn">Verify integrity <b>→</b></button>
+      <div id="verifyResult" class="verify-result hidden"></div>
+    </div>
+  </section>
+  <section class="how"><div><span>01</span><h3>Fingerprint locally</h3><p>SHA-256 creates a unique digest in your browser. The original content never leaves your device.</p></div><div><span>02</span><h3>Anchor on-chain</h3><p>A smart contract timestamps the fingerprint and records its owner on a public network.</p></div><div><span>03</span><h3>Verify anywhere</h3><p>Anyone with the original record can reproduce its fingerprint and confirm its integrity.</p></div></section>
+</main>
+<footer><strong>RelayMesh</strong><span>Fragments move. Privacy stays.</span><a href="contracts/RelayEscrow.sol">View reward contract</a></footer>
+<div id="toast">Copied to clipboard</div><script src="app.js"></script><script type="module" src="mesh.js"></script></body></html>
