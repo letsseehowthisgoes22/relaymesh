@@ -1,6 +1,6 @@
 # Submission checklist
 
-- [x] Working browser MVP
+- [x] Working three-client network-transfer MVP
 - [x] Protocol tests
 - [x] RLY token contract
 - [x] Delivery reward escrow contract
@@ -10,7 +10,8 @@
 - [x] 3:2 project thumbnail
 - [ ] Record demo using `demo-script.md`
 - [ ] Publish repository and add its URL
-- [ ] Deploy app and add its live URL
+- [x] Deploy static visual demo and add its live URL
+- [ ] Deploy the WebSocket relay service for the public three-client demo
 - [ ] Upload demo video and add its public URL
 - [ ] Deploy contracts to testnet and add addresses
 - [ ] Paste `devpost.md`, technologies, links, and media into Devpost

@@ -6,13 +6,14 @@ RelayMesh is a blockchain-agnostic, delay-tolerant messaging protocol that encry
 
 ## Working MVP
 
-The browser demo performs real PBKDF2 key derivation, AES-256-GCM encryption, fragment shuffling, multi-path relay simulation, integrity checking, receiver-side reassembly, decryption, and reward settlement. Relays never receive plaintext.
+The MVP performs real PBKDF2 key derivation, AES-256-GCM encryption, fragment shuffling, network transfer between three independent browser clients, application-level store-and-forward relaying, receiver-side integrity checking and decryption, and a delivery receipt that returns through the relay to the sender. The relay client never receives the recovery phrase or plaintext.
 
 ```bash
-python3 -m http.server 8081
+npm install
+npm start
 ```
 
-Open `http://localhost:8081` and select **Run encrypted delivery**.
+Open `http://localhost:8082/peer.html` in three tabs or devices using the same room code. Start **Receiver**, then **Relay**, then **Sender**. Send the message from the Sender tab and watch the delivery receipt return.
 
 ## Test
 
@@ -44,7 +45,7 @@ The tests cover successful encryption/reassembly, wrong-phrase rejection, and ta
 
 ## Current scope
 
-The hackathon MVP simulates nearby devices in-browser and includes production-shaped smart contracts. Bluetooth, Wi-Fi Direct, LoRa, libp2p transport adapters, threshold coding, and testnet deployment are the next implementation layer.
+The hackathon MVP uses a repository-owned WebSocket transport server so its three-client store-and-forward path is reproducible locally. Bluetooth, Wi-Fi Direct, LoRa, libp2p transport adapters, threshold coding, hosted relay deployment, and testnet contract deployment are the next implementation layer.
 
 ## License
 

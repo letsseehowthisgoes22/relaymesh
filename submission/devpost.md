@@ -16,7 +16,7 @@ RelayCoin (RLY) makes the network self-sustaining. A sender escrows RLY for a de
 
 ## How we built it
 
-The working MVP uses the browser Web Crypto API for PBKDF2 key derivation, AES-GCM authenticated encryption, random salts and IVs, and SHA-256 integrity checks. A deterministic shuffle derived from the phrase distributes fragments across simulated store-carry-forward routes. The receiver sorts fragment indexes only after collection and rejects corrupted bundles or an incorrect phrase.
+The working MVP uses the browser Web Crypto API for PBKDF2 key derivation, AES-GCM authenticated encryption, random salts and IVs, and SHA-256 integrity checks. A deterministic shuffle derived from the phrase distributes fragments to a separate relay browser client. The relay stores and forwards only opaque ciphertext fragments to a separate receiver client. The receiver sorts fragment indexes only after collection, rejects corrupted bundles or an incorrect phrase, and returns a delivery receipt through the relay to the sender.
 
 The Web3 layer consists of two Solidity contracts. RelayCoin is an ERC-20-compatible test token for hackathon use. RelayEscrow locks a sender's delivery budget and pays registered relay claims only after an ECDSA receipt signed by the intended receiver. A separate ProofRegistry contract can timestamp important message or document fingerprints without publishing their contents.
 
@@ -28,7 +28,8 @@ The second challenge was token incentives. Paying for every hop rewards spam. We
 
 ## Accomplishments that we're proud of
 
-- A functional end-to-end encryption, fragmentation, shuffle, reassembly, and decryption demo.
+- A tested three-client sender-to-relay-to-receiver network transfer with a returned delivery receipt.
+- A functional end-to-end encryption, fragmentation, shuffle, reassembly, and decryption pipeline.
 - Wrong phrases fail cryptographically and modified fragments fail integrity checks.
 - Relays see only ciphertext fragments and temporary routing metadata.
 - A delivery-receipt escrow contract connects network utility to RLY rewards.
@@ -40,7 +41,7 @@ Resilient messaging is not just a transport problem. It is the combination of pr
 
 ## What's next
 
-Next we will replace the simulated relays with a libp2p transport, add Bluetooth and Wi-Fi Direct adapters, use erasure coding so any threshold of fragments can recover the message, deploy RLY and RelayEscrow to an EVM testnet, and field-test a LoRa bridge for disaster and remote-area communication.
+Next we will deploy the relay service publicly, replace the WebSocket transport with libp2p plus Bluetooth and Wi-Fi Direct adapters, use erasure coding so any threshold of fragments can recover the message, deploy RLY and RelayEscrow to an EVM testnet, and field-test a LoRa bridge for disaster and remote-area communication.
 
 ## Built with
 
