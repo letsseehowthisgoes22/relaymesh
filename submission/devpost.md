@@ -12,7 +12,7 @@ When a cellular network, cloud provider, or platform goes down, ordinary messagi
 
 RelayMesh turns a message and recovery phrase into an encrypted, delay-tolerant delivery bundle. The browser derives an AES-256 key, encrypts locally, splits the ciphertext into shuffled fragments, and sends the fragments through independent opt-in relays. The receiver uses rotating rendezvous tags to identify relevant fragments, verifies their integrity, reconstructs the bundle, and decrypts locally.
 
-RelayCoin (RLY) makes the network self-sustaining. A sender escrows RLY for a delivery. Relays earn only when the receiver signs a receipt, so payment follows useful work instead of raw traffic. Deposits and rate limits create a natural spam-defense layer.
+RelayCoin (RLY) makes the network self-sustaining. A sender escrows RLY for a delivery. Relays earn only when the receiver signs a receipt, so payment follows useful work instead of raw traffic. Deposits and rate limits create a natural spam-defense layer. RelayMesh is blockchain-agnostic: messages always move off-chain, and a chain adapter can settle the same signed receipt on any supported blockchain. The MVP includes an EVM adapter; Solana and other chain adapters can implement the same receipt interface.
 
 ## How we built it
 

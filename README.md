@@ -2,7 +2,7 @@
 
 **Messages find a way. Even when networks fail.**
 
-RelayMesh is a delay-tolerant messaging protocol that encrypts a message locally, breaks it into shuffled fragments, moves those fragments through opt-in devices, and reconstructs the message only for the intended receiver. RelayCoin (RLY) rewards relays after a receiver-signed delivery receipt.
+RelayMesh is a blockchain-agnostic, delay-tolerant messaging protocol that encrypts a message locally, breaks it into shuffled fragments, moves those fragments through opt-in devices, and reconstructs the message only for the intended receiver. RelayCoin (RLY) rewards relays after a receiver-signed delivery receipt.
 
 ## Working MVP
 
@@ -40,7 +40,7 @@ The tests cover successful encryption/reassembly, wrong-phrase rejection, and ta
 - Vanilla HTML, CSS, and JavaScript
 - Solidity 0.8.24 smart contracts
 - ethers.js wallet integration
-- EVM-compatible network design
+- Chain-adapter settlement: the MVP includes EVM contracts, while the transport and receipt format remain independent of any blockchain
 
 ## Current scope
 
